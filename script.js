@@ -66,9 +66,9 @@ console.log(add(3, 4, 7, 8, 9));
 console.log(add());
 // Calling it with less than two arguments would yield a NaN value.
 
-const x = [50, 60, 70, 100];
+const y = [50, 60, 70, 100];
 
-console.log(add(...x));
+console.log(add(...y));
 
 let restaurantGuests = 0;
 
@@ -84,3 +84,125 @@ console.log(guests);
 // let restaurantGuests = 0;
 const guestsCorrect = restaurantGuests ?? 10;
 console.log(guestsCorrect);
+
+console.log("-----------------------------");
+
+const game = {
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
+  players: [
+    [
+      "Neuer",
+      "Pavard",
+      "Martinez",
+      "Alaba",
+      "Davies",
+      "Kimmich",
+      "Goretzka",
+      "Coman",
+      "Muller",
+      "Gnarby",
+      "Lewandowski",
+    ],
+    [
+      "Burki",
+      "Schulz",
+      "Hummels",
+      "Akanji",
+      "Hakimi",
+      "Weigl",
+      "Witsel",
+      "Hazard",
+      "Brandt",
+      "Sancho",
+      "Gotze",
+    ],
+  ],
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2037",
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+
+  // es6 enhanced object literals syntax allows us to write the function below with a cleaner syntax
+  // printgoals: function (...players) {
+  //   for (let i = 0; i < players.length; i++) {
+  //     console.log(players[i]);
+  //   }
+
+  //   return players.length;
+  // },
+
+  // function keyword can be eliminated in the new and much cleaner syntax
+  printgoals(...players) {
+    for (let i = 0; i < players.length; i++) {
+      console.log(players[i]);
+    }
+
+    return players.length;
+  },
+};
+
+const [players1, players2] = game.players;
+// console.log(players1, players2);
+
+const [gk1, ...fieldPlayers1] = players1;
+// console.log(gk1, fieldPlayers1);
+
+const allPlayers = [...players1, ...players2];
+// console.log(allPlayers)
+
+const players1Final = [...players1, "Thiago", "Coutinho", "Perisic"];
+// console.log(players1Final);
+
+// const { team1, x, team2 } = game.odds;
+// console.log(team1, x, team2);
+
+const {
+  odds: { team1, x: draw, team2 },
+} = game;
+
+const goalsScored = game.printgoals(...game.scored);
+console.log(goalsScored);
+
+const menu1 = ["pizza", "pasta", "burger"];
+const menu2 = ["jai", "mata", "di"];
+
+const menu = [...menu1, ...menu2];
+console.log(menu);
+
+// for - of loop for looping through arrays
+
+for (const item of menu) {
+  console.log(item);
+}
+
+// in case the index is also needed along with the element
+
+// for (const item of menu.entries()) {
+//   console.log(`${item[0] + 1}. ${item[1]}`);
+// }
+// The same can be done using destructuring, thereby being a cleaner way to achieve the same
+
+for (const [index, item] of menu.entries()) {
+  console.log(`${index + 1}. ${item}`);
+}
+
+// optional chaining
+
+const users = [
+  {
+    name: "Bipin",
+    email: "bipinkalra@gmail.com",
+  },
+  {
+    name: "Himanshi",
+    email: "vhimanshi14@gmail.com",
+  },
+];
+
+// ?. is used for optional chaining
+console.log(users[0]?.name ?? "User does not have a name!");
