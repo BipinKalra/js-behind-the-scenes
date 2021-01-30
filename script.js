@@ -194,6 +194,38 @@ for (goalScorer of game.scored.values()) {
 
 console.log(scorers);
 
+const gameEvents = new Map([
+  [17, "⚽ GOAL"],
+  [36, "🔁 Substitution"],
+  [47, "⚽ GOAL"],
+  [61, "🔁 Substitution"],
+  [64, "🔶 Yellow card"],
+  [69, "🔴 Red card"],
+  [70, "🔁 Substitution"],
+  [72, "🔁 Substitution"],
+  [76, "⚽ GOAL"],
+  [80, "⚽ GOAL"],
+  [92, "🔶 Yellow card"],
+]);
+
+// console.log([...gameEvents])
+// const gameEventsArray = [...gameEvents];
+// const uniqueEvents = new Set();
+
+// for ([, eventName] of gameEvents) {
+//   uniqueEvents.add(eventName);
+// }
+// console.log(uniqueEvents);
+
+// The same can be done by using .values() on maps in a much shorter way
+const uniqueEvents = [...new Set(gameEvents.values())];
+console.log(uniqueEvents);
+
+gameEvents.delete(64);
+// console.log(gameEvents);
+
+console.log(`An event occured, every ${90 / gameEvents.size} minutes!`);
+
 // const menu1 = ["pizza", "pasta", "burger"];
 // const menu2 = ["jai", "mata", "di"];
 
